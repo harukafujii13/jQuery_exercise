@@ -9,4 +9,34 @@
 
  $(document).ready(function () {
     // code goes here
+    $(".fa-plus").click(function(event){
+        const textVal = $(".textBox").val();
+        
+        if(!textVal){
+            alert("Error: Please enter a task first");
+        } else {
+            $(".notCompleted").append(
+                `<div class="task">${textVal}
+                <span id="done" class="fas fa-check"></span>
+                <span id="delete" class="fas fa-trash-alt"></span>
+                </div>`
+            );
+        }
+        $(".textBox").val("");
+
+        $(".fa-check").click(function(){
+            const doneBtn = $(this).parent();
+            doneBtn.fadeIn(1000, function(){
+                doneBtn.hide().appendTo('.completed').fadeIn(1000)
+            })
+        });
+
+
+        $(".fa-trash-alt").click(function(){
+            const deleteBtn = $(this).parent();
+            deleteBtn.fadeOut(1000, function(){
+                deleteBtn.remove();
+            });
+        });
+    });
 });
